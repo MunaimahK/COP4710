@@ -1,60 +1,59 @@
 .body {
-    background-color: white;
+  background-color: white;
 }
 
-.nav{
-    top:0;
-    width: 100%;
-    height: 60px;
-    position: fixed;
-    display: block;
-    overflow: hidden;
-    margin-top: 0%;
-    background-color: black;
+.nav {
+  top: 0;
+  width: 100%;
+  height: 60px;
+  position: fixed;
+  display: block;
+  overflow: hidden;
+  margin-top: 0%;
+  background-color: black;
 }
 
 .nav a {
-    color: white;
-    float: left;
-    font-color: black;
-    text-align: center;
-    padding: 18px 16px;
-    text-decoration: none;
-    font-size: 17px;
-    font-size: large;
-    font-family: 'Open Sans', sans-serif;
-    position: relative;
+  color: white;
+  float: left;
+  font-color: black;
+  text-align: center;
+  padding: 18px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  font-size: large;
+  font-family: "Open Sans", sans-serif;
+  position: relative;
 }
 
 .nav a:hover {
-    background-color: #ddd;
-    color: black;
+  background-color: #ddd;
+  color: black;
 }
 
 .nav a.active {
-    background-color: #04AA6D;
-    color: white;
+  background-color: #04aa6d;
+  color: white;
 }
 .page-link {
-    height: 100px;
-    width: 10%;
+  height: 100px;
+  width: 10%;
 
-    text-align: center;
-    position: relative;
-    grid: inline;
-    
+  text-align: center;
+  position: relative;
+  grid: inline;
 }
 
-
 .back-arrow {
-    top: 0;
-    height: 50px;
+  top: 0;
+  height: 50px;
 }
 
 .forms {
-    position: absolute;
+  padding-top: 20%;
+  position: absolute;
 }
 
-.forms p{
-    background-color: green;
+.forms p {
+  background-color: green;
 }
