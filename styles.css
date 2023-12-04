@@ -16,7 +16,7 @@
 .nav a {
   color: white;
   float: left;
-  font-color: black;
+  font: black;
   text-align: center;
   padding: 18px 16px;
   text-decoration: none;
@@ -56,4 +56,8 @@
 
 .forms p {
   background-color: green;
+}
+
+.main {
+  margin-top: 60px;
 }
