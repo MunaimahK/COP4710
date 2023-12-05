@@ -1,41 +1,35 @@
 <?php
 require('utils.php');
-// Step 1: ID Input
+$unloaded_containers = array();
+$loaded_containers = array();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $shipOrTruckID = $_POST['shipOrTruckID'];
 
-    // Step 2: View Container Details
-    // Retrieve container details based on the entered ID
-    $containers = getContainerDetails($shipOrTruckID);
-
-    // Step 3: Update Container Status
-    updateContainerStatus($containers);
-}
-
-function getContainerDetails($shipOrTruckID)
-{
-    // Retrieve container details from the database based on the entered ID
-    // Implement your logic here to fetch container details
-    // Return an array of container details
-
     $conn = createConnection();
-    $sql = "SELECT * FROM Containers WHERE SourceID = '$shipOrTruckID' OR DestinationID = '$shipOrTruckID';";
+
+    $sql = "SELECT * FROM Containers WHERE ContainerStatus='at source' AND SourceID = '$shipOrTruckID';";
     $result = $conn->query($sql);
-    $containers = array();
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            $containers[] = $row;
+            $unloaded_containers[] = $row;
         }
     }
-    return $containers;
-}
+    $sql = "UPDATE Containers SET ContainerStatus = 'in port' WHERE ContainerStatus='at source' AND SourceID = '$shipOrTruckID';";
+    $conn->query($sql);
 
-function updateContainerStatus($containers)
-{
-    // Update the container status in the system
-    // Implement your logic here to update the container status
-}
 
+    $sql = "SELECT * FROM Containers WHERE ContainerStatus='in port' AND DestinationID = '$shipOrTruckID';";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $loaded_containers[] = $row;
+        }
+    }
+    $sql = "UPDATE Containers SET ContainerStatus = 'at destination' WHERE ContainerStatus='in port' AND DestinationID = '$shipOrTruckID';";
+    $conn->query($sql);
+
+    $conn->close();
+}
 ?>
 
 <!DOCTYPE html>
@@ -43,36 +37,68 @@ function updateContainerStatus($containers)
 
 <head>
     <title>Crane Operator Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css" />
+    <script src="navbar.js"></script>
 </head>
 
 <body>
-    <h1>Crane Operator Page</h1>
-    <form method="POST" action="">
-        <label for="shipOrTruckID">Enter Ship or Truck ID:</label>
-        <input type="text" name="shipOrTruckID" id="shipOrTruckID">
-        <button type="submit">Submit</button>
-    </form>
-    <hr />
-    <h2>Container Details</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Container ID</th>
-                <th>Source ID</th>
-                <th>Destination ID</th>
-                <th>Container Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($containers as $container) : ?>
+    <navbar-component></navbar-component>
+    <main>
+        <h1>Crane Operator Page</h1>
+        <form method="POST" action="">
+            <label for="shipOrTruckID">Enter Ship or Truck ID:</label>
+            <input type="text" name="shipOrTruckID" id="shipOrTruckID">
+            <button type="submit">Submit</button>
+        </form>
+        <hr />
+        <h2>Unloaded Containers</h2>
+        <table>
+            <thead>
                 <tr>
-                    <td><?php echo $container['ContainerID'] ?></td>
-                    <td><?php echo $container['SourceID'] ?></td>
-                    <td><?php echo $container['DestinationID'] ?></td>
-                    <td><?php echo $container['ContainerStatus'] ?></td>
+                    <th>Container ID</th>
+                    <th>Source ID</th>
+                    <th>Destination ID</th>
+                    <th>Container Status</th>
                 </tr>
-            <?php endforeach; ?>
-        </tbody>
+            </thead>
+            <tbody>
+                <?php foreach ($unloaded_containers as $container) : ?>
+                    <tr>
+                        <td><?php echo $container['ContainerID'] ?></td>
+                        <td><?php echo $container['SourceID'] ?></td>
+                        <td><?php echo $container['DestinationID'] ?></td>
+                        <td>At Source -> In Port</td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+        <hr />
+        <h2>Loaded Containers</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Container ID</th>
+                    <th>Source ID</th>
+                    <th>Destination ID</th>
+                    <th>Container Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($loaded_containers as $container) : ?>
+                    <tr>
+                        <td><?php echo $container['ContainerID'] ?></td>
+                        <td><?php echo $container['SourceID'] ?></td>
+                        <td><?php echo $container['DestinationID'] ?></td>
+                        <td>In Port -> At Destination</td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </main>
 </body>
 
 </html>

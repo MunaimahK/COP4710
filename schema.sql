@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS StorageAreas;
-
 DROP TABLE IF EXISTS Containers;
+
+DROP TABLE IF EXISTS StorageAreas;
 
 DROP TABLE IF EXISTS Trucks;
 
@@ -119,4 +119,4 @@ INSERT INTO
     ContainerStatus
   )
 VALUES
-  ('Company A', 1, 2, 1, 'In Port');
+  ('Company A', 1, 2, 1, 'at source');
