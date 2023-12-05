@@ -16,7 +16,7 @@
 .nav a {
   color: white;
   float: left;
-  font-color: black;
+  font: black;
   text-align: center;
   padding: 18px 16px;
   text-decoration: none;
@@ -35,10 +35,10 @@
   background-color: #04aa6d;
   color: white;
 }
+
 .page-link {
   height: 100px;
   width: 10%;
-
   text-align: center;
   position: relative;
   grid: inline;
@@ -56,4 +56,12 @@
 
 .forms p {
   background-color: green;
+}
+
+main {
+  margin-top: 60px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
 }
