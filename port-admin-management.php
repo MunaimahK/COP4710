@@ -1,64 +1,61 @@
 <?php
 require('utils.php');
 
-function getShip() {
+function getShip()
+{
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $conn = createConnection();
-        if(isset($_POST['shipID']) && $_POST['shipID'] != "") {
+        if (isset($_POST['shipID']) && $_POST['shipID'] != "") {
             $shipID = $_POST['shipID'];
             $sql = "SELECT * FROM Ships WHERE VehicleID = " . $shipID;
             $result = $conn->query($sql);
 
-            if($result->num_rows > 0) {
+            if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo "Ship Found! <br>Name: " . $row["Name"] . " | " . "Owner: " . $row["Owner"] . " | " . "Berth ID: " . $row["BerthID"] . " | " . "Entry Time: " . $row["EntryTime"] . " | " . "Exit Time: " . $row["ExitTime"];
                 }
-            }
-            else {
+            } else {
                 echo "Ship not found";
             }
         }
-        
     }
 }
-function getTruck() {
+function getTruck()
+{
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $conn = createConnection();
-        if(isset($_POST['truckID'])&& $_POST['truckID'] != "") {
+        if (isset($_POST['truckID']) && $_POST['truckID'] != "") {
             $truckID = $_POST['truckID'];
             $sql = "SELECT * FROM Trucks WHERE VehicleID = " . $truckID;
             $result = $conn->query($sql);
 
-            if($result->num_rows > 0) {
+            if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo "Truck Found! <br>Driver Name: " . $row["DriverName"] . " | " . "Truck Company: " . $row["TruckCompany"] . " | " . "License Plate: " . $row["LicensePlate"];
                 }
-            }
-            else {
+            } else {
                 echo "Truck not found";
             }
         }
-        
     }
 }
-function getContainer() {
+function getContainer()
+{
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $conn = createConnection();
-        if(isset($_POST['containerID'])&& $_POST['containerID'] != "") {
+        if (isset($_POST['containerID']) && $_POST['containerID'] != "") {
             $containerID = $_POST['containerID'];
             $sql = "SELECT * FROM Containers WHERE ContainerID = " . $containerID;
             $result = $conn->query($sql);
 
-            if($result->num_rows > 0) {
+            if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    echo "Container Found! <br>Company Name: " . $row["CompanyName"] . " | " . "Source ID: " . $row["SourceID"] . " | " . "DestinationID: " . $row["DestinationID"]. " | " . "Storage Area ID: " . $row['StorageAreaID'] . " | " . "Container Status: " . $row['ContainerStatus'];
+                    echo "Container Found! <br>Company Name: " . $row["CompanyName"] . " | " . "Source ID: " . $row["SourceID"] . " | " . "DestinationID: " . $row["DestinationID"] . " | " . "Storage Area ID: " . $row['StorageAreaID'] . " | " . "Container Status: " . $row['ContainerStatus'];
                 }
-            }
-            else {
+            } else {
                 echo "Container not found";
             }
         }
-        
     }
 }
 
@@ -83,16 +80,14 @@ function getBerths()
 
 <head>
     <title>Port Admin Management</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
     <link rel="stylesheet" href="styles.css" />
     <script src="navbar.js"></script>
 </head>
+
 <body>
     <navbar-component></navbar-component>
-    
+
     <main>
         <h1>Truck Information</h1>
         <form method="POST" action="port-admin-management.php">
@@ -102,7 +97,7 @@ function getBerths()
         </form>
         <p>
             <?php
-                getTruck();
+            getTruck();
             ?>
         </p>
 
@@ -114,7 +109,7 @@ function getBerths()
         </form>
         <p>
             <?php
-                getShip();
+            getShip();
             ?>
         </p>
         <h1>Container Information</h1>
@@ -125,7 +120,7 @@ function getBerths()
         </form>
         <p>
             <?php
-                getContainer();
+            getContainer();
             ?>
         </p>
         <h2>All Berths</h2>
@@ -139,8 +134,9 @@ function getBerths()
             getBerths();
             ?>
         </table>
-        
-        
+
+
     </main>
 </body>
+
 </html>

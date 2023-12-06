@@ -4,7 +4,8 @@
 
 .nav {
   top: 0;
-  width: 100%;
+  left: 0;
+  right: 0;
   height: 60px;
   position: fixed;
   display: block;
@@ -60,10 +61,6 @@
 
 main {
   margin-top: 60px;
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 20px;
 }
 
 .error {
