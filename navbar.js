@@ -16,7 +16,7 @@ class NarbarComponent extends HTMLElement {
                 <a href="/truck-registration.php">Truck Registration</a>
                 <a href="/truck-driver-registration.php">Truck Driver Registration</a>
                 <a href="/container-registration.php">Container Registration</a>
-                <a href="/port-admin-management</a>
+                <a href="/port-admin-management.php">Port Admin</a>
               </div>
           </nav>
         </div>
