@@ -12,7 +12,7 @@ function login()
   $result = $conn->query($sql);
 
   if ($result->num_rows == 1) {
-    header('Location: /ship-registration.html');
+    header('Location: /ship-register.php');
   } else {
     header('Location: /signup.php');
   }

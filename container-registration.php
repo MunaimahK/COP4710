@@ -32,7 +32,7 @@ function createContainer()
 </head>
 
 <body>
-    <navbar-component></navbar-component>
+    <navbar-component logged-in></navbar-component>
     
     <main>
         <h1>Create Container</h1>

@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <navbar-component></navbar-component>
+    <navbar-component logged-in></navbar-component>
 
     <main>
         <h1>Crane Operator Page</h1>
