@@ -8,16 +8,21 @@ function createTruck()
 {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $conn = createConnection();
+        // check if truck with same values already exists
+        $sql = "SELECT * FROM Trucks WHERE DriverName = '" . $_POST['DriverName'] . "' AND TruckCompany = '" . $_POST['TruckCompany'] . "' AND LicensePlate = '" . $_POST['LicensePlate'] . "';";
+        $res = $conn->query($sql);
+        if ($res->num_rows > 0) {
+            echo '<p class="error">Truck already exists!</p>';
+            return;
+        }
+
         $sql = "INSERT INTO Vehicles () VALUES ();";
         $res = $conn->query($sql);
         $vehicleID = $conn->insert_id;
+
         $sql = "INSERT INTO Trucks (VehicleId, DriverName, TruckCompany, LicensePlate) VALUES ('" . $vehicleID . "', '" . $_POST['DriverName'] . "', '" . $_POST['TruckCompany'] . "', '" . $_POST['LicensePlate'] . "');";
         $res = $conn->query($sql);
-        if ($res === TRUE) {
-            echo "Truck created successfully";
-        } else {
-            echo "Error creating truck: " . $conn->error;
-        }
+        echo "<p>Truck created successfully</p>";
         $conn->close();
     }
 }
@@ -51,12 +56,9 @@ function getTrucks()
 
 <body>
     <navbar-component></navbar-component>
-    <p>
-        <?php
-        createTruck();
-        ?>
-    </p>
+
     <main>
+
         <h1>Create Truck</h1>
         <form action="truck-registration.php" method="post">
             <label for="DriverName">Driver Name:</label><br>
@@ -67,6 +69,9 @@ function getTrucks()
             <input type="text" id="LicensePlate" name="LicensePlate"><br><br>
             <button type="submit">Create Truck</button>
         </form>
+        <?php
+        createTruck();
+        ?>
         <h2>All Trucks</h2>
         <hr />
         <table>
