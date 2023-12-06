@@ -11,7 +11,7 @@ class NarbarComponent extends HTMLElement {
               <div class="nav">
                 <a href="/signup.php">Register </a>
                 <a href="/login.php">Login </a>
-                <a href="/ship-register.php">Login </a>
+                <a href="/ship-register.php">Ship Registration </a>
                 <a href="/port-entry.php">Port Entry </a>
                 <a href="/port-exit.php">Port Exit </a>
                 <a href="/crane-operator.php">Crane Operator</a>
