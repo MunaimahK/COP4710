@@ -1,14 +1,13 @@
 <!doctype html>
 <html lang="en">
 <?php
+include 'utils.php';
 
     function createShip()
     {
 
-        $host = "localhost";
-        $username = "root";
-        $pwd = "";
-        $db_name = "COP4710";
+        
+        $conn = createConnection();
 
         $name = $_POST["name"] ?? null;
         $owner = $_POST["owner"] ?? null;
@@ -16,7 +15,7 @@
         $XTime = $_POST["exit"] ?? null;
 
         
-        $conn = new mysqli($host, $username, $pwd, $db_name);
+        #$conn = new mysqli($host, $username, $pwd, $db_name);
         $sql1 = "INSERT INTO Vehicles () Values ();";
         $res = $conn->query($sql1);
         $vehicleID = $conn->insert_id;
@@ -37,12 +36,9 @@
 
     function getShip()
     {
-        $host = "localhost";
-        $username = "root";
-        $pwd = "";
-        $db_name = "COP4710";
+       
 
-        $conn = new mysqli($host, $username, $pwd, $db_name);
+        $conn = createConnection();
         $sql = "SELECT * FROM Ships;";
         $res = $conn->query($sql);
         if ($res->num_rows > 0) {

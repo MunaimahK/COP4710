@@ -9,9 +9,11 @@ class NarbarComponent extends HTMLElement {
           <nav>
             <ul>
               <div class="nav">
-                <a href="/ship-registration.html">Ship Registration </a>
-                <a href="#">Port Entry </a>
-                <a href="#">Port Exit </a>
+                <a href="/signup.php">Register </a>
+                <a href="/login.php">Login </a>
+                <a href="/ship-register.php">Login </a>
+                <a href="/port-entry.php">Port Entry </a>
+                <a href="/port-exit.php">Port Exit </a>
                 <a href="/crane-operator.php">Crane Operator</a>
                 <a href="/truck-registration.php">Truck Registration</a>
                 <a href="/truck-driver-registration.php">Truck Driver Registration</a>

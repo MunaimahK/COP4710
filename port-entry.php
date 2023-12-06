@@ -1,16 +1,14 @@
 <!doctype html>
 <html lang="en">
 <?php
+include 'utils.php';
 
     function portEntry()
     {
 
-        $host = "localhost";
-        $username = "root";
-        $pwd = "";
-        $db_name = "COP4710";
         
-        $conn = new mysqli($host, $username, $pwd, $db_name);
+        
+        $conn = createConnection();
         
     // Find rows where Berth is available
        $sql = "SELECT * FROM Berths WHERE IsAvailable = TRUE;";
@@ -51,13 +49,10 @@
 
     function getShip()
     {
-        $host = "localhost";
-        $username = "root";
-        $pwd = "";
-        $db_name = "COP4710";
+        
 
-        $conn = new mysqli($host, $username, $pwd, $db_name);
-        $sql = "SELECT * FROM Ships;";
+      $conn = createConnection();
+      $sql = "SELECT * FROM Ships;";
         $res = $conn->query($sql);
         if ($res->num_rows > 0) {
             while ($row = $res->fetch_assoc()) {

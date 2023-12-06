@@ -1,16 +1,14 @@
 <!doctype html>
 <html lang="en">
 <?php
+include 'utils.php';
 
     function portExit()
     {
 
-        $host = "localhost";
-        $username = "root";
-        $pwd = "";
-        $db_name = "COP4710";
         
-        $conn = new mysqli($host, $username, $pwd, $db_name);
+        
+        $conn = createConnection();
         $shipID = $_POST["shipID"] ?? null;
         
         $name = $_POST["name"] ?? null;
@@ -52,12 +50,9 @@
 
     function getShip()
     {
-        $host = "localhost";
-        $username = "root";
-        $pwd = "";
-        $db_name = "COP4710";
+       
 
-        $conn = new mysqli($host, $username, $pwd, $db_name);
+        $conn = createConnection();
         $sql = "SELECT * FROM Ships;";
         $res = $conn->query($sql);
         if ($res->num_rows > 0) {
