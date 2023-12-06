@@ -43,16 +43,15 @@ class NarbarComponent extends HTMLElement {
       this.innerHTML = `
       <div class="nav">
           <nav>
-              <div class="nav">
-                <a href="/ship-register.php">Ship Registration </a>
-                <a href="/port-entry.php">Port Entry </a>
-                <a href="/port-exit.php">Port Exit </a>
-                <a href="/crane-operator.php">Crane Operator</a>
-                <a href="/truck-registration.php">Truck Registration</a>
-                <a href="/truck-driver-registration.php">Truck Driver Registration</a>
-                <a href="/container-registration.php">Container Registration</a>
-                <a href="/port-admin-management.php">Port Admin</a>
-              </div>
+              <a href="/ship-register.php">Ship Registration </a>
+              <a href="/port-entry.php">Port Entry </a>
+              <a href="/port-exit.php">Port Exit </a>
+              <a href="/crane-operator.php">Crane Operator</a>
+              <a href="/truck-registration.php">Truck Registration</a>
+              <a href="/truck-driver-registration.php">Truck Driver Registration</a>
+              <a href="/container-registration.php">Container Registration</a>
+              <a href="/port-admin-management.php">Port Admin</a>
+              <a href="/logout.php" id="logout">Logout</a>
           </nav>
         </div>
       `;

@@ -1,5 +1,6 @@
 <?php
 require('utils.php');
+requireAuth();
 
 if (isset($_GET['truckID'])) {
   $conn = createConnection();

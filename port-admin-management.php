@@ -1,5 +1,6 @@
 <?php
 require('utils.php');
+requireAuth();
 
 function getShip()
 {

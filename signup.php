@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <?php
-include 'utils.php';
+require('utils.php');
 
 function createUser()
 {

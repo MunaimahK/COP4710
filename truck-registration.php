@@ -2,7 +2,8 @@
 <html lang="en">
 
 <?php
-include 'utils.php';
+require('utils.php');
+requireAuth();
 
 function createTruck()
 {

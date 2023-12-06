@@ -12,15 +12,24 @@ function login()
   $result = $conn->query($sql);
 
   if ($result->num_rows == 1) {
+    $seconds_per_day = 86400;
+    setcookie("auth_token", $email, time() + ($seconds_per_day * 30), "/");
     header('Location: /ship-register.php');
   } else {
-    header('Location: /signup.php');
+    header('Location: /login.php?invalid_auth=Invalid login');
   }
 
   $conn->close();
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   login();
+}
+
+function checkAuthParams()
+{
+  if (isset($_GET["invalid_auth"])) {
+    echo ($_GET["invalid_auth"]);
+  }
 }
 ?>
 
@@ -43,6 +52,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <input type="password" id="password" name="password">
       <button>Log In</button>
     </form>
+    <p class="error">
+      <?php checkAuthParams(); ?>
+    </p>
   </main>
 </body>
 
