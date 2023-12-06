@@ -21,8 +21,8 @@ include 'utils.php';
         $vehicleID = $conn->insert_id;
     
         $sql = "INSERT INTO Ships (VehicleID, Name, Owner) VALUES ('". $vehicleID ."', '". $name ."', '" . $owner . "');";
-        $mysqli = new mysqli($host, $username, $pwd, $db_name);
-        $res = $mysqli->query($sql);
+        #$mysqli = new mysqli($host, $username, $pwd, $db_name);
+        $res = $conn->query($sql);
 
         
         if($res == TRUE){
