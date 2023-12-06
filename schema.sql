@@ -16,12 +16,12 @@ DROP TABLE IF EXISTS Ports;
 
 DROP TABLE IF EXISTS Users;
 
-CREATE TABLE 
+CREATE TABLE
   Users (
-    UserID INT PRIMARY KEY AUTO_INCREMENT, 
-    Name CHAR(20), 
-    Email VARCHAR(20), 
-    Password VARCHAR(20)
+    UserID INT PRIMARY KEY AUTO_INCREMENT,
+    Name CHAR(225),
+    Email VARCHAR(225),
+    Password VARCHAR(225)
   );
 
 CREATE TABLE
@@ -43,8 +43,8 @@ CREATE TABLE
 CREATE TABLE
   Ships (
     VehicleID INT PRIMARY KEY,
-    Name CHAR(20),
-    Owner CHAR(20),
+    Name CHAR(225),
+    Owner CHAR(225),
     BerthID INT,
     EntryTime TIME,
     ExitTime TIME,
@@ -62,16 +62,16 @@ CREATE TABLE
 CREATE TABLE
   Trucks (
     VehicleID INT PRIMARY KEY,
-    DriverName VARCHAR(100),
-    TruckCompany VARCHAR(100),
-    LicensePlate VARCHAR(20),
+    DriverName VARCHAR(225),
+    TruckCompany VARCHAR(225),
+    LicensePlate VARCHAR(225),
     FOREIGN KEY (VehicleID) REFERENCES Vehicles (VehicleID)
   );
 
 CREATE TABLE
   StorageAreas (
     StorageAreaID INT PRIMARY KEY AUTO_INCREMENT,
-    StorageAddress VARCHAR(20) NOT NULL,
+    StorageAddress VARCHAR(225) NOT NULL,
     PortID INT,
     FOREIGN KEY (PortID) REFERENCES Ports (PortID)
   );
@@ -83,7 +83,7 @@ CREATE TABLE
     SourceID INT,
     DestinationID INT,
     StorageAreaID INT,
-    ContainerStatus VARCHAR(255),
+    ContainerStatus VARCHAR(255) DEFAULT 'at source',
     FOREIGN KEY (SourceID) REFERENCES Vehicles (VehicleID),
     FOREIGN KEY (DestinationID) REFERENCES Vehicles (VehicleID),
     FOREIGN KEY (StorageAreaID) REFERENCES StorageAreas (StorageAreaID)
